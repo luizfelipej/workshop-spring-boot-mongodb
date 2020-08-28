@@ -15,7 +15,7 @@ import com.educandoweb.workshopmongo.repository.PostRepository;
 import com.educandoweb.workshopmongo.repository.UserRepository;
 
 @Configuration
-public class Intantiation implements CommandLineRunner {
+public class Instantiation implements CommandLineRunner {
 
 	@Autowired
 	private UserRepository userRepository;
@@ -43,8 +43,15 @@ public class Intantiation implements CommandLineRunner {
 				new AuthorDTO(franco));
 		Post post2 = new Post(null, sdf.parse("23/03/2018"), "BORAA HORA DO SHOW PORRA",
 				"ó o homi ali porra, é 13 porra!", new AuthorDTO(banban));
+		Post post3 = new Post(null, sdf.parse("23/03/2018"), "HUUUUUUUUUUUUUUUUUURRRRRR", "QUERO MAIS, QUERO MAIS!",
+				new AuthorDTO(banban));
 
-		postRepository.saveAll(Arrays.asList(post1, post2));
+		postRepository.saveAll(Arrays.asList(post1, post2, post3));
+
+		franco.getPosts().addAll(Arrays.asList(post1));
+		banban.getPosts().addAll(Arrays.asList(post2, post3));
+
+		userRepository.saveAll(Arrays.asList(franco, banban));
 
 	}
 
